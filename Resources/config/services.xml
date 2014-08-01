@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="togu_serialization.handler.reference.class">Togu\SerializationBundle\Handler\ReferenceHandler</parameter>
+        <parameter key="togu_serialization.handler.referenceone.class">Togu\SerializationBundle\Handler\ReferenceOneHandler</parameter>
+        <parameter key="togu_serialization.handler.link.class">Togu\SerializationBundle\Handler\LinkHandler</parameter>
+    </parameters>
+
+    <services>
+        <service id="togu_serialization.handler.reference" class="%togu_serialization.handler.reference.class%">
+            <argument type="service" id="togu.annotation.processor" />
+            <argument type="service" id="doctrine_phpcr" />
+            <tag name="jms_serializer.subscribing_handler" />
+        </service>
+        
+        <service id="togu_serialization.handler.referenceone" class="%togu_serialization.handler.referenceone.class%">
+            <argument type="service" id="togu.annotation.processor" />
+            <argument type="service" id="doctrine_phpcr" />
+            <tag name="jms_serializer.subscribing_handler" />
+        </service>
+        
+        <service id="togu_serialization.handler.link" class="%togu_serialization.handler.link.class%">
+            <argument type="service" id="doctrine_phpcr" />
+            <tag name="jms_serializer.subscribing_handler" />
+        </service>
+    </services>
+    
+</container>
+        
