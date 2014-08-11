@@ -68,11 +68,6 @@ class ReferenceOneHandler implements SubscribingHandlerInterface {
 	public function serializeReference(VisitorInterface $visitor, $document, array $type, Context $context)
 	{
 		return $document->getId();
-/*		return array(
-			"id" => $document->getId(),
-			"type" => $this->processor->getModelOfClass($document)
-		);
-*/
 	}
 
 }
